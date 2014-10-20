@@ -4,6 +4,9 @@
 package persitencia;
 
 import java.sql.Statement;
+import java.util.ArrayList;
+
+import logica.Usuario;
 
 import com.mysql.jdbc.ResultSet;
 
@@ -13,24 +16,20 @@ import com.mysql.jdbc.ResultSet;
  */
 public class UsuarioSql {
 //Attributes----------------------------
-	private static String sql="";
-	private ConexionBD conexion;
+
 //Building------------------------------
 	/**
 	 * 
 	 */
 	public UsuarioSql(){
-		conexion=new ConexionBD();
+		
 	}
 //Methods-------------------------------
 	/**
 	 * 
 	 * @return
 	 */
-	public ResultSet selectUsuarios(){
-		if(conexion.conectar()){
-			Statement statement;
-			ResultSet result;
-		}
+	public String selectUsuarios(){
+		return "SELECT * FROM usuarios";
 	}
 }

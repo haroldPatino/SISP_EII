@@ -1,5 +1,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="EN" lang="EN" dir="ltr"
+	  xmlns:jsf="http://xmlns.jcp.org/jsf">
 <head profile="http://gmpg.org/xfn/11">
 <title>LOGIN</title>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
@@ -24,13 +25,15 @@
 		<br>
         <br>
         <br>
-        <h1><p><label style="margin:15px 10px 5px 220px;" for="login">Nombre Usuario: </label> 
-        <input type="text" name="login" value="" size="45" placeholder="Username"></p></h1>
-        <h1><p><label for="password" style="margin:25px 10px 5px 265px;float: left; ">Contraseña: </label>
-        <br>
-        <input type="password" name="password"  size="45" value="" placeholder="Password"></p></h1>
+        <form jsf:id ="formLogin" jsf:prependId="false">
+        	<h1><p><label style="margin:15px 10px 5px 220px;" jsf:for="username">Nombre Usuario: </label> 
+        	<input type="text" jsf:id="username" size="45" placeholder="Username" jsf:value="#Usuario.nickname"></p></h1>
+        	<h1><p><label for="password" style="margin:25px 10px 5px 265px;float: left; ">Contraseña: </label>
+        	<br>
+        	<input type="password" jsf:id="password"  size="45" value="" placeholder="Password" jsf:value="Usuario.password"></p></h1>
         
-        <input type="image" style="margin: 45px 50px 5px 420px;float:left;" src="images/btn_Ingresar.png" value=			"" onClick=" window.location.href='menuprincipal.html' ">
+       		<input type="image" style="margin: 45px 50px 5px 420px;float:left;" src="images/btn_Ingresar.png" value=			"" onClick=" window.location.href='menuprincipal.html' ">
+        </form>
  
 
         <!-- <p class="submit"><input type="submit" name="commit" value="INGRESAR"></p>-->
