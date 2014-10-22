@@ -8,10 +8,12 @@ package logica;
  *
  */
 import java.io.Serializable;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ActionEvent;
+import javax.faces.event.ActionListener;
 import javax.servlet.http.HttpSession;
+
 import org.primefaces.context.RequestContext;
 
 public class LoginBean implements Serializable {
@@ -60,7 +62,7 @@ public class LoginBean implements Serializable {
 	/**
 	 * @return the logeado
 	 */
-	public boolean isLogeado() {
+	public boolean estaLogeado() {
 		return logeado;
 	}
 	/**
@@ -73,33 +75,25 @@ public class LoginBean implements Serializable {
 	 * Este metodo permite validar los datos de inicio de sesion para el acceso a las funciones del menu principal
 	 * @param actionEvent
 	 */
-	public void login(ActionEvent actionEvent){
-		RequestContext context=RequestContext.getCurrentInstance();
-		FacesMessage msg=null;
-		if(nickname!=null && password!=null){
-			if(buscarUsuario(nickname)!=null){
-				Usuario user=buscarUsuario(nickname);
-				if(user.getPassword().equals(password)){
-					logeado=true;
-					msg=new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@ ", user.getNickname());
-				}
-				else{
-					msg=new FacesMessage(FacesMessage.SEVERITY_ERROR, "La contraseña es incorrecta","Credenciales Invalidas");
-				}
-			}
-			else{
-				msg=new FacesMessage(FacesMessage.SEVERITY_INFO, "EL usuario no existe ","Credenciales Invalidas");
-			}
-		}
-		else{
-			msg=new FacesMessage(FacesMessage.SEVERITY_INFO, "El nickname o el password estan vacios"+"/n"+"intente de nuevo","Campos Vacios");
-		}
-		FacesContext.getCurrentInstance().addMessage(null, msg);
-		context.addCallbackParam("estaLogeado", logeado);
-		if(logeado){
-			context.addCallbackParam("view", "menuprincipal.html");
-		}
-	}
+	 public void login(ActionListener actionListener) {
+		    RequestContext context = RequestContext.getCurrentInstance();
+		    FacesMessage msg = null;
+		    //ACTUALIZAR EL CODIGO
+		    if (nickname != null && nickname.equals("admin") && password != null
+		        && password.equals("admin")) {
+		      logeado = true;
+		      msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", nickname);
+		    } else {
+		      logeado = false;
+		      msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error",
+		                             "Credenciales no válidas");
+		    }
+
+		    FacesContext.getCurrentInstance().addMessage(null, msg);
+		    context.addCallbackParam("estaLogeado", logeado);
+		    if (logeado)
+		      context.addCallbackParam("view", "menuprincipal.html");
+		  }
 	/**
 	 * 
 	 * @param nickname

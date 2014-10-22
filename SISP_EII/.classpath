@@ -20,5 +20,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="lib" path="recursos/mysql-connector-java-5.0.8/mysql-connector-java-5.0.8-bin.jar"/>
+	<classpathentry kind="lib" path="recursos/primefaces-5.0.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
