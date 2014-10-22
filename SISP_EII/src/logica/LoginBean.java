@@ -95,9 +95,9 @@ public class LoginBean implements Serializable {
 			msg=new FacesMessage(FacesMessage.SEVERITY_INFO, "El nickname o el password estan vacios"+"/n"+"intente de nuevo","Campos Vacios");
 		}
 		FacesContext.getCurrentInstance().addMessage(null, msg);
-		context.addCallbackParam("EstaLogeado", logeado);
+		context.addCallbackParam("estaLogeado", logeado);
 		if(logeado){
-			context.addCallbackParam("View", "menuprincipal.html");
+			context.addCallbackParam("view", "menuprincipal.html");
 		}
 	}
 	/**
