@@ -291,7 +291,9 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 	border:1px solid #C7C5C8;
 	clear:left;
 	}
-
+.panelGridCenter td,.panelGridCenter tr {
+    text-align: center;
+}
 /* ----------------------------------------------Footer-------------------------------------*/
 
 #footer{

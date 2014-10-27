@@ -8,4 +8,14 @@
 		<managed-bean-class>logica.LoginBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>usuarioDao</managed-bean-name>
+		<managed-bean-class>persitencia.UsuarioDao</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>conexionBD</managed-bean-name>
+		<managed-bean-class>persitencia.ConexionBD</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
 </faces-config>

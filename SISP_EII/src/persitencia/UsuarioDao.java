@@ -7,7 +7,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import logica.Usuario;
 
 /**
@@ -17,7 +16,7 @@ import logica.Usuario;
 public class UsuarioDao {
 //Attributes-----------------------------
 	private UsuarioSql sql;
-	private ConexionBD conexion;
+	private static ConexionBD conexion;
 //Building-------------------------------
 	public UsuarioDao(){
 		sql=new UsuarioSql();
@@ -41,11 +40,10 @@ public class UsuarioDao {
 					user.setPassword(result.getString("PASSWORD"));
 					usuarios.add(user);
 				}
-				return usuarios;
 			}catch (SQLException e){
-				System.out.println(e.getMessage());
+				e.printStackTrace();
 			}
 		}
-		return null;
+		return usuarios;
 	}
 }

@@ -1,0 +1,88 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<head id="head" profile="http://gmpg.org/xfn/11">
+<title>LOGIN</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="styles/layout.css" type="text/css" />
+
+<script type="text/javascript" src="scripts/jquery-1.4.1.min.js"></script>
+<script type="text/javascript"
+	src="scripts/jquery-slidedeck.pack.lite.js"></script>
+</head>
+<body style="text-align:center">
+	<div class="wrapper row4">
+		<div id="header" class="clear">
+			<img class="imgr" src="images/LOGO_SISP.png" alt="" width="250"
+				height="110" /> <img class="imgl" src="images/LOGO_SEE.png" alt=""
+				width="190" height="110" />
+			<h1 align="center" style="margin: 40px 0px 0px 65px;">
+				<a>SISTEMA DE INFORMACIÓN PARA<br>LA SELECCIÓN DE PERSONAL</a>
+			</h1>
+		</div>
+	</div>
+	<!-- ####################################################################################################### -->
+
+	<div class="wrapper row2">
+		<div id="featured_slide">
+			<!-- ####################################################################################################### -->
+			          
+			<p:growl id="mensajes" showDetail="true" life="2000" />
+			
+  <h:form>
+    <p:panel header="Login" style="width:300px">
+      <h:panelGrid columns="2" cellpadding="5">
+        <h:outputLabel for="username" value="Usuario:" />
+        <p:inputText value="#{loginBean.nombre}" id="username"
+           required="true" label="username" placeholder="nickname"/>
+        <h:outputLabel for="password" value="Clave:" />
+        <p:password value="#{loginBean.clave}" id="password" required="true"
+           label="password" />
+        <f:facet name="footer">
+          <p:commandButton id="loginButton" value="Login"
+             actionListener="#{loginBean.login}" update=":mensajes"
+             oncomplete="manejarLogin(xhr, status, args)" />
+        </f:facet>
+      </h:panelGrid>
+    </p:panel>
+  </h:form>
+		</div>
+		<!-- ####################################################################################################### -->
+	</div>
+
+	<!-- ####################################################################################################### -->
+	<div class="wrapper row2">
+		<!-- lineas azul de separación -->
+	</div>
+	<!-- ####################################################################################################### -->
+
+
+	<div class="wrapper row4">
+		<div id="header" class="clear">
+			<strong><p align="center">SOFTWARE EMPRESARIAL EFICIENTE</p>
+				<p align="center">see.softw@gmail.com</p>
+				<p align="center">Sogamoso-Boyacá-Colombia</p>
+				<p align="center">Calle: 4 Sur No. 15-134 | Ed Administrativo
+					Cubículo de Invetigación No. 8</p>
+				<p align="center">Copyright &copy; 2014 - All Rights Reserved -
+					SEE</p></strong>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('.slidedeck').slidedeck();
+	</script>
+	<script type="text/javascript">
+		//<![CDATA[
+		function manejarLogin(xhr, status, args) {
+			if (!args.validationFailed && args.estaLogeado) {
+				setTimeout(function() {
+					window.location = args.view;
+				}, 500);
+			}
+		}
+		//]]>
+	</script>
+</body>
+</html>

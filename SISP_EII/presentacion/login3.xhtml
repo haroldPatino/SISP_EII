@@ -1,43 +1,57 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:jsf="http://xmlns.jcp.org/jsf">
-<head jsf:id="head" profile="http://gmpg.org/xfn/11">
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3c.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pr="http://primefaces.org/ui">
+<h:head>
 <title>LOGIN</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="imagetoolbar" content="no" />
 <link rel="stylesheet" href="styles/layout.css" type="text/css" />
+
 <script type="text/javascript" src="scripts/jquery-1.4.1.min.js"></script>
 <script type="text/javascript"
 	src="scripts/jquery-slidedeck.pack.lite.js"></script>
-</head>
-<body jsf:id="top">
-	<p:growl id="mensajes" showDetail="true" life="2000" />
+</h:head>
+<h:body>
 	<div class="wrapper row4">
 		<div id="header" class="clear">
 			<img class="imgr" src="images/LOGO_SISP.png" alt="" width="250"
 				height="110" /> <img class="imgl" src="images/LOGO_SEE.png" alt=""
 				width="190" height="110" />
 			<h1 align="center" style="margin: 40px 0px 0px 65px;">
-				<a>SISTEMA DE INFORMACIÓN PARA<br>LA SELECCIÓN DE PERSONAL</a>
+				<a>SISTEMA DE INFORMACI&Oacute;N PARA<br>LA SELECCI&Oacute;N DE PERSONAL</br></a>
 			</h1>
 		</div>
 	</div>
 	<!-- ####################################################################################################### -->
 
 	<div class="wrapper row2">
-		<div id="featured_slide">
+		<h:form style="text-align:center">
+    <pr:panel header="Login" style="position:relative; left:500px; width:350px" >
+      <h:panelGrid columns="2" cellpadding="9" styleClass="panelGridCenter" style="position:relative; top:5px">
+        <h:outputLabel for="username" value="Usuario:" />
+        <pr:inputText value="#{loginBean.nombre}" id="username" required="true" label="username" placeholder="nickname" />
+        <h:outputLabel for="password" value="Clave:" />
+        <pr:password value="#{loginBean.clave}" id="password" required="true" label="password" />
+        <f:facet name="footer">
+          <pr:commandButton id="loginButton" value="Login" actionListener="#{loginBean.login}" update=":mensajes" oncomplete="manejarLogin(xhr, status, args)" />
+        </f:facet>
+      </h:panelGrid>
+    </pr:panel>
+  </h:form><div id="featured_slide">
 			<!-- ####################################################################################################### -->
-			>          
-			<h:form>
-				<input>
-            </h:form>
+			Â Â Â Â Â Â Â Â Â Â 
+			<pr:growl id="mensajes" showDetail="true" life="2000" />
+			
+  
 		</div>
 		<!-- ####################################################################################################### -->
 	</div>
 
 	<!-- ####################################################################################################### -->
 	<div class="wrapper row2">
-		<!-- lineas azul de separación -->
+		<!-- lineas azul de separaciÃ³n -->
 	</div>
 	<!-- ####################################################################################################### -->
 
@@ -46,9 +60,9 @@
 		<div id="header" class="clear">
 			<strong><p align="center">SOFTWARE EMPRESARIAL EFICIENTE</p>
 				<p align="center">see.softw@gmail.com</p>
-				<p align="center">Sogamoso-Boyacá-Colombia</p>
+				<p align="center">Sogamoso-Boyac&aacute;-Colombia</p>
 				<p align="center">Calle: 4 Sur No. 15-134 | Ed Administrativo
-					Cubículo de Invetigación No. 8</p>
+					Cub&iacute;culo de Invetigaci&oacute;n No. 8</p>
 				<p align="center">Copyright &copy; 2014 - All Rights Reserved -
 					SEE</p></strong>
 		</div>
@@ -67,5 +81,5 @@
 		}
 		//]]>
 	</script>
-</body>
+</h:body>
 </html>

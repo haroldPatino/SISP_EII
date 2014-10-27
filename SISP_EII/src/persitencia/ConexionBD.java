@@ -16,7 +16,7 @@ public class ConexionBD {
 	private Connection conexion;
 	private final String BaseDatos = "sisp";	
 	private final String DRIVER="com.mysql.jdbc.Driver";
-	private final String URL="jdbc:mysql://localhost:3306/sisp";
+	private final String URL="jdbc:mysql://127.0.0.1:3306/sisp";
 	private final String USER="root";
 	private final String PASSWORD="";
 //Building----------------------------------
@@ -78,19 +78,13 @@ public class ConexionBD {
 			
 			if(getConexion() != null){
                 resp = true;
+                System.out.println("---------------Conecto--------------------");
             }else{
                 System.out.println("Conexion Fallida!");                
             }
 			
-			
-		}catch(SQLException e){
-			System.out.println(e.getMessage());
-		}catch (ClassNotFoundException e) {
-			System.out.println(e.getMessage());
-		}catch (IllegalAccessException e) {
-			System.out.println(e.getMessage());
-		}catch (InstantiationException e) {
-			System.out.println(e.getMessage());
+		}catch(Exception e){
+			System.out.println("-----------------Error-----------------");
 		}
 		return resp;
 	}
@@ -98,7 +92,7 @@ public class ConexionBD {
 		try{
 			conexion.close();
 		}catch (SQLException e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
 	}
 }
