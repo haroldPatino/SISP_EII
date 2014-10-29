@@ -27,8 +27,11 @@
 	<!-- ####################################################################################################### -->
 
 	<div class="wrapper row2">
+			<div id="featured_slide">
+			<!-- ####################################################################################################### -->
+			 <pr:growl id="mensajes" showDetail="true" life="2000" />
 		<h:form style="text-align:center">
-    <pr:panel header="Login" style="position:relative; left:500px; width:350px" >
+    <pr:panel header="Login" style="position:relative; left:300px; width:350px; background-color:#6FA8DC">
       <h:panelGrid columns="2" cellpadding="9" styleClass="panelGridCenter" style="position:relative; top:5px">
         <h:outputLabel for="username" value="Usuario:" />
         <pr:inputText value="#{loginBean.nombre}" id="username" required="true" label="username" placeholder="nickname" />
@@ -39,12 +42,7 @@
         </f:facet>
       </h:panelGrid>
     </pr:panel>
-  </h:form><div id="featured_slide">
-			<!-- ####################################################################################################### -->
-			          
-			<pr:growl id="mensajes" showDetail="true" life="2000" />
-			
-  
+  </h:form>  
 		</div>
 		<!-- ####################################################################################################### -->
 	</div>
