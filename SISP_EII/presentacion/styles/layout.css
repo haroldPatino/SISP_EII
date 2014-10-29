@@ -294,6 +294,9 @@ div.wrapper h1, div.wrapper h2, div.wrapper h3, div.wrapper h4, div.wrapper h5, 
 .panelGridCenter td,.panelGridCenter tr {
     text-align: center;
 }
+.imgLogout{ 
+	background-image: url("images/btn_regresar.png") !important; 
+}
 /* ----------------------------------------------Footer-------------------------------------*/
 
 #footer{
