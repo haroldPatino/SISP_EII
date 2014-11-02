@@ -72,9 +72,15 @@ public class FiltroLogin implements Filter {
 		 * compilación.
 		 */
 		  if (urlStr.endsWith("login.xhtml"))
-		    return true;
+			  return true;
 		  if (urlStr.indexOf("/javax.faces.resource/") != -1)
-		    return true;
+			  return true;
+		  if (urlStr.indexOf("/images") != -1)
+			  return true;
+		  if (urlStr.indexOf("/scripts") != -1)
+			  return true;
+		  if (urlStr.indexOf("/styles") != -1)
+			  return true;
 		  return false;
 		}
 	/**
