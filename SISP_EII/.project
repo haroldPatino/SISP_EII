@@ -42,7 +42,7 @@
 		<link>
 			<name>presentacion/WEB-INF/lib/primefaces-5.0.jar</name>
 			<type>1</type>
-			<location>D:/Documents/Semestre VIII/ELECTIVA II/primefaces-5.0.jar</location>
+			<locationURI>PROJECT_LOC/recursos/primefaces-5.0.jar</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
