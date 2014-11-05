@@ -28,7 +28,7 @@ import persitencia.PersonaDao;
 public class SubirFichero implements Serializable{
 //Attributes----------------------------------
 	private static final long serialVersionUID = 4352236420460919694L;
-	private String destination="SISP_EII/recursos/";
+	private String destination="C:\\Users\\Lenovo Pc\\git\\SISP_EII\\SISP_EII\\presentacion\\recursos\\";
     private UploadedFile file;
     private PersonaDao dao;
 //Building------------------------------------
@@ -53,7 +53,8 @@ public class SubirFichero implements Serializable{
 	}
 	public void transferirArchivo(String fileName,InputStream in){
 		try{
-			OutputStream out= new FileOutputStream(new File(destination+file));
+			OutputStream out= new FileOutputStream(new File(destination+file.getFileName()));
+			
 			System.out.println(out);
 			int reader=0;
 			byte[] bytes=new byte[(int) getFile().getSize()];
@@ -75,9 +76,9 @@ public class SubirFichero implements Serializable{
 			if(extension.equals("csv")){
 				try{
 					transferirArchivo(getFile().getFileName(), getFile().getInputstream());
-//					LecturaArchivo lect=new LecturaArchivo();
-//					lect.leerFichero(destination+getFile().getFileName());
-					//dao.insertarPersonas(lect.getPersonasArchivo());
+					LecturaArchivo lect=new LecturaArchivo();
+					lect.leerFichero(destination+getFile().getFileName());
+					dao.insertarPersonas(lect.getPersonasArchivo());
 					FacesMessage msg = new FacesMessage("Ok", "El Fichero " + file.getFileName() + " fue subido correctamente.");
 			    	FacesContext.getCurrentInstance().addMessage(null, msg);
 				}catch(IOException e){
@@ -96,5 +97,17 @@ public class SubirFichero implements Serializable{
 			FacesMessage msg = new FacesMessage("Error", "No hay ningun archivo seleccionado.");
 	    	FacesContext.getCurrentInstance().addMessage(null, msg);
 		}
+	}
+	/**
+	 * @return the destination
+	 */
+	public String getDestination() {
+		return destination;
+	}
+	/**
+	 * @return the dao
+	 */
+	public PersonaDao getDao() {
+		return dao;
 	}
 }

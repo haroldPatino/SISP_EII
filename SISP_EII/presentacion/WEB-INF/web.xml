@@ -14,7 +14,7 @@
   </init-param>
   <init-param>
   	<param-name>uploadDirectory</param-name>
-  	<param-value>C:\tmpSisp</param-value>
+  	<param-value>C:\Users\Lenovo Pc\git\SISP_EII\SISP_EII\presentacion\recursos</param-value>
   </init-param>
   </filter>
   <filter-mapping>

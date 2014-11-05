@@ -81,6 +81,8 @@ public class FiltroLogin implements Filter {
 			  return true;
 		  if (urlStr.indexOf("/styles") != -1)
 			  return true;
+		  if (urlStr.indexOf("/recursos") != -1)
+			  return true;
 		  return false;
 		}
 	/**
