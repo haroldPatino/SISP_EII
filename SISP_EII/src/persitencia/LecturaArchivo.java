@@ -60,5 +60,10 @@ public class LecturaArchivo {
 		}
 		
 	}
-	
+	/**
+	 * @return the personasArchivo
+	 */
+	public ArrayList<Persona> getPersonasArchivo() {
+		return personasArchivo;
+	}	
 }
