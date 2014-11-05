@@ -35,6 +35,36 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>presentacion/WEB-INF/lib/commons-fileupload-1.3.1.jar</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/recursos/commons-fileupload-1.3.1-bin/lib/commons-fileupload-1.3.1.jar</locationURI>
+		</link>
+		<link>
+			<name>presentacion/WEB-INF/lib/commons-io-2.4-javadoc.jar</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/recursos/commons-io-2.4/commons-io-2.4-javadoc.jar</locationURI>
+		</link>
+		<link>
+			<name>presentacion/WEB-INF/lib/commons-io-2.4-sources.jar</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/recursos/commons-io-2.4/commons-io-2.4-sources.jar</locationURI>
+		</link>
+		<link>
+			<name>presentacion/WEB-INF/lib/commons-io-2.4-test-sources.jar</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/recursos/commons-io-2.4/commons-io-2.4-test-sources.jar</locationURI>
+		</link>
+		<link>
+			<name>presentacion/WEB-INF/lib/commons-io-2.4-tests.jar</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/recursos/commons-io-2.4/commons-io-2.4-tests.jar</locationURI>
+		</link>
+		<link>
+			<name>presentacion/WEB-INF/lib/commons-io-2.4.jar</name>
+			<type>1</type>
+			<locationURI>PROJECT_LOC/recursos/commons-io-2.4/commons-io-2.4.jar</locationURI>
+		</link>
+		<link>
 			<name>presentacion/WEB-INF/lib/mysql-connector-java-5.0.8-bin.jar</name>
 			<type>1</type>
 			<locationURI>PROJECT_LOC/recursos/mysql-connector-java-5.0.8/mysql-connector-java-5.0.8-bin.jar</locationURI>
