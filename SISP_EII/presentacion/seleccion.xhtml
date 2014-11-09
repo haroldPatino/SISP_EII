@@ -5,41 +5,47 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:pr="http://primefaces.org/ui">
 <h:head>
-<title>Menú Principal</title>
+<title>Selección</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="imagetoolbar" content="no" />
 <link rel="stylesheet" href="../styles/layout.css" type="text/css" />
 <script type="text/javascript" src="../scripts/jquery-1.4.1.min.js"></script>
 <script type="text/javascript" src="../scripts/jquery-slidedeck.pack.lite.js"></script>
 </h:head>
-<h:body>
+<body id="top">
 <div class="wrapper row4">
-		<div id="header" class="clear">
-			<img class="imgr" src="../images/LOGO_SISP.png" alt="" width="250"
-				height="110" /> <img class="imgl" src="../images/LOGO_SEE.png" alt=""
-				width="190" height="110" />
-			<h1 align="center" style="margin: 40px 0px 0px 65px;">
-				<a>SISTEMA DE INFORMACI&Oacute;N PARA<br>LA SELECCI&Oacute;N DE PERSONAL</br></a>
-			</h1>
-		</div>
-	</div>
+  <div id="header" class="clear">
+      <img class="imgr" src="../images/LOGO_SISP.png" alt="" width="250" height="110" />
+      <img class="imgl" src="../images/LOGO_SEE.png" alt=""  width="190" height="110" />
+      <h1 align="center" style="margin:40px 0px 0px 65px;"><a>SISTEMA DE INFORMACIÓN PARA<br>LA SELECCIÓN DE PERSONAL</br></a></h1>
+  </div>
+</div>
 <!-- ####################################################################################################### -->
 <div class="wrapper row2">
   <div id="featured_slide">
   
-      
-	<input  type="image" value="" onClick=" window.location.href='carga.xhtml' " 
-	src="../images/btn_CargaHV.png" style="margin: 25px 50px 5px 150px;float: left; " />
     
-	<input  type="image" value="" onClick=" window.location.href='seleccion.xhtml' "
-	src="../images/btn_SeleccionP.png" style="margin: 25px 0px 5px 5px;float: left; " />
-
-    <pr:commandLink id="logout" actionListener="#{loginBean.logout}" oncomplete="logout(xhr, status, args)">
-    	<input type="image" style="margin: 0px 0px 0px 9px;float:right;" src="../images/btn_regresar.png"/>
-    </pr:commandLink>
+  	<input type="image" style="margin: 0px 0px 5px 10px;float:right; animation:alternate" src="../images/exit.png" 
+    value="" onClick=" window.location.href='login.xhtml' "/>
+    
+    <input type="image" style="margin: 0px 0px 5px 10px;float:right;" src="../images/Home.png" value="" onClick=" window.location.href='menuprincipal.xhtml' "/>
+    
+	<h:form style="text-align:center" enctype="multipart/form-data">    <pr:panel header="Carga" style="position:absolute; left:300px; width:350px; background-color:#6FA8DC">
+      <h:panelGrid columns="1" cellpadding="9" styleClass="panelGridCenter" style="position:relative; top:5px">
+        <pr:fileUpload mode="simple" value="#{subirFichero.file}"></pr:fileUpload>
+        <f:facet name="footer">
+          <pr:commandButton id="ChargeButton" ajax="false" value="Subir Archivo" actionListener="#{subirFichero.upload}"/>
+        </f:facet>
+        <br></br>
+      </h:panelGrid>
+      <pr:messages showDetail="true" />
+    </pr:panel>
+    
+  </h:form>
   </div>
-</div>
-
+</div>   
+    
+ 
 <!-- ####################################################################################################### -->
 <div class="wrapper row2">
 <!-- lineas azul de separación -->
@@ -57,14 +63,5 @@
   </div>
 </div>
 <script type="text/javascript">$('.slidedeck').slidedeck();</script>
-<script type="text/javascript">
-  //<![CDATA[
-  function logout(xhr, status, args) {
-    setTimeout(function() {
-      window.location = 'login.xhtml';
-    }, 500);
-  }
-//]]>
-</script>
-</h:body>
+</body>
 </html>
