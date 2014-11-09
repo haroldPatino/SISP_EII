@@ -8,7 +8,6 @@ package logica;
  *
  */
 import java.io.Serializable;
-import java.util.ArrayList;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;

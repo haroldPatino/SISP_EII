@@ -3,12 +3,6 @@
  */
 package persitencia;
 
-import java.sql.Statement;
-import java.util.ArrayList;
-
-import logica.Usuario;
-
-import com.mysql.jdbc.ResultSet;
 
 /**
  * @author Harold Patiño

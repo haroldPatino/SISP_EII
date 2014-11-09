@@ -4,7 +4,6 @@
 package logica;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 
 /**
  * @author Harold Patiño
@@ -19,7 +18,7 @@ public class Persona {
 	private long telefono;
 	private String direccion;
 	private String correo;
-	private long numeroDocumento;
+	private String numeroDocumento;
 	private String tipoDocumento;
 	private char sexo;
 	private String pregrado;
@@ -117,13 +116,13 @@ public class Persona {
 	/**
 	 * @return the numeroDocumento
 	 */
-	public long getNumeroDocumento() {
+	public String getNumeroDocumento() {
 		return numeroDocumento;
 	}
 	/**
 	 * @param numeroDocumento numeroDocumento a colocar
 	 */
-	public void setNumeroDocumento(long numeroDocumento) {
+	public void setNumeroDocumento(String numeroDocumento) {
 		this.numeroDocumento = numeroDocumento;
 	}
 	/**

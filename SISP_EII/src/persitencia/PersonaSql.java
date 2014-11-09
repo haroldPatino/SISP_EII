@@ -51,7 +51,7 @@ public class PersonaSql {
 				+ persona.getPostgrado() + "');";
 	}
 	public String idPersona(String numeroDocumento){
-		return "SELECT ID_PERSONA FROM PERSONA WHERE NUMERO_DOCUMENTO="+numeroDocumento+";";
+		return "SELECT * FROM persona WHERE `NUMERO_DOCUMENTO`="+numeroDocumento+";";
 	}
 	public String insertarExp(String idPersona,ExpLaboral exp){
 		return "INSERT INTO `sisp`.`exp_lab` (`ID_EXP`, `ID_PERSONA`, `FECHA_INICIO`, `FECHA_FIN`) VALUES (NULL, '"+idPersona+"', '"+exp.getFechaInicio()+"', '"+exp.getFechaFin()+"');";
