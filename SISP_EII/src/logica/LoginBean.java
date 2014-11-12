@@ -49,16 +49,22 @@ public class LoginBean implements Serializable {
     FacesMessage msg = null;
     dao=new UsuarioDao();
     Usuario user= dao.cargarUsuarios().get(0);
+    if(nombre !=null && (!nombre.contains("@") || !nombre.contains(" "))){
     	 if (nombre != null && nombre.equals(user.getNickname()) && clave != null
-    		        && clave.equals(user.getPassword())) {
-    		      logeado = true;
-    		      msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", nombre);
-    		    } else {
-    		      logeado = false;
-    		      msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error",
-    		                             "Credenciales no válidas");
-    		    }
-
+ 		        && clave.equals(user.getPassword())) {
+ 		      logeado = true;
+ 		      msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "Bienvenid@", nombre);
+ 		    } else {
+ 		      logeado = false;
+ 		      msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error",
+ 		                             "Credenciales no válidas");
+ 		    }
+    }
+    else{
+    	logeado = false;
+	      msg = new FacesMessage(FacesMessage.SEVERITY_WARN, "Login Error",
+	                             "El nombre de usuario contiene caracteres especiales");
+    }
     		    FacesContext.getCurrentInstance().addMessage(null, msg);
     		    context.addCallbackParam("estaLogeado", logeado);
     		    if (logeado)

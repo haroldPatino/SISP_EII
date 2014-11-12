@@ -15,7 +15,6 @@ import java.util.ArrayList;
 
 import logica.ExpLaboral;
 import logica.Persona;
-import logica.Usuario;
 
 /**
  * @author Harold Patiño

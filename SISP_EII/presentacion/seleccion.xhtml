@@ -8,6 +8,13 @@
 <title>Selección</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="../recursos/primeui-1.1/development/css/jquery-ui.css" />  
+<link rel="stylesheet" href="../recursos/primeui-1.1/development/css/theme.css" />  
+<link rel="stylesheet" href="../recursos/primeui-1.1/development/css/prime-ui-min.css" />  
+<script type="text/javascript" src="../recursos/primeui-1.1/development/js/jquery.js"></script>  
+<script type="text/javascript" src="../recursos/primeui-1.1/development/js/jquery-ui.js"></script>  
+<script type="text/javascript" src="../recursos/primeui-1.1/development/js/prime-ui.js"></script>  
+
 <link rel="stylesheet" href="../styles/layout.css" type="text/css" />
 <script type="text/javascript" src="../scripts/jquery-1.4.1.min.js"></script>
 <script type="text/javascript" src="../scripts/jquery-slidedeck.pack.lite.js"></script>
@@ -30,11 +37,48 @@
     
     <input type="image" style="margin: 0px 0px 5px 10px;float:right;" src="../images/Home.png" value="" onClick=" window.location.href='menuprincipal.xhtml' "/>
     
-	<h:form style="text-align:center" enctype="multipart/form-data">    <pr:panel header="Carga" style="position:absolute; left:300px; width:350px; background-color:#6FA8DC">
-      <h:panelGrid columns="1" cellpadding="9" styleClass="panelGridCenter" style="position:relative; top:5px">
-        <pr:fileUpload mode="simple" value="#{subirFichero.file}"></pr:fileUpload>
+	<h:form id="form01" style="text-align:center" enctype="multipart/form-data">    
+	<pr:panel id="panelUno" header="Filtros" style="position:absolute; left:0px; width:800px; background-color:#6FA8DC">
+      <h:panelGrid columns="6" cellpadding="9" styleClass="panelGridCenter" style="position:relative; top:5px">
+        <pr:outputLabel for="selectEdad" value="Filtro Edad"></pr:outputLabel>
+        <h:selectBooleanCheckbox id="selectEdad" immediate="true" onclick="manejarEdad()">
+        	<f:ajax event="click" render="@form"></f:ajax>
+        </h:selectBooleanCheckbox>
+        <pr:outputLabel value="Entre"></pr:outputLabel>
+        <pr:inputText id="edadmax"/>
+        <pr:outputLabel value="y"></pr:outputLabel>
+        <pr:inputText id="edadmax"/>
+        
+        <pr:outputLabel for="selectPreg" value="Filtro Pregrado"></pr:outputLabel>
+        <h:selectBooleanCheckbox id="selectPreg" immediate="true">
+        	<f:ajax event="click" render="@form"></f:ajax>
+        </h:selectBooleanCheckbox>
+        <pr:inputText disabled="true"></pr:inputText>
+ 		
+ 		<pr:outputLabel></pr:outputLabel>
+ 		<pr:outputLabel></pr:outputLabel>
+ 		<pr:outputLabel></pr:outputLabel>
+ 		
+ 		<pr:outputLabel for="selectSex" value="Filtro Sexo"></pr:outputLabel>
+ 		<h:selectBooleanCheckbox id="selectSex" immediate="true">
+        	<f:ajax event="click" render="@form"></f:ajax>
+        </h:selectBooleanCheckbox>
+ 		<h:selectOneMenu id="listSex" label="Seleccion por Sexo">
+ 			<f:selectItem itemLabel="Masculino" itemValue="M"></f:selectItem>
+ 			<f:selectItem itemLabel="Femenino" itemValue="F"></f:selectItem>
+ 		</h:selectOneMenu>
+ 		<pr:outputLabel></pr:outputLabel>
+ 		<pr:outputLabel></pr:outputLabel>
+ 		<pr:outputLabel></pr:outputLabel>
+ 		
+ 		<pr:outputLabel for="selectExp" value="Filtro Experiencia"></pr:outputLabel>
+ 		<h:selectBooleanCheckbox id="selectExp" immediate="true">
+        	<f:ajax event="click" render="@form"></f:ajax>
+        </h:selectBooleanCheckbox>
+        <pr:inputText id="txtExp" disabled="true" placeholder="Meses Exp"></pr:inputText>
+ 		        
         <f:facet name="footer">
-          <pr:commandButton id="ChargeButton" ajax="false" value="Subir Archivo" actionListener="#{subirFichero.upload}"/>
+          <button id="default" type="button">Default</button> 
         </f:facet>
         <br></br>
       </h:panelGrid>
@@ -63,5 +107,6 @@
   </div>
 </div>
 <script type="text/javascript">$('.slidedeck').slidedeck();</script>
+
 </body>
 </html>
