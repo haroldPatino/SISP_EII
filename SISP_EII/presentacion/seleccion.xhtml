@@ -8,13 +8,6 @@
 <title>Selección</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="imagetoolbar" content="no" />
-<link rel="stylesheet" href="../recursos/primeui-1.1/development/css/jquery-ui.css" />  
-<link rel="stylesheet" href="../recursos/primeui-1.1/development/css/theme.css" />  
-<link rel="stylesheet" href="../recursos/primeui-1.1/development/css/prime-ui-min.css" />  
-<script type="text/javascript" src="../recursos/primeui-1.1/development/js/jquery.js"></script>  
-<script type="text/javascript" src="../recursos/primeui-1.1/development/js/jquery-ui.js"></script>  
-<script type="text/javascript" src="../recursos/primeui-1.1/development/js/prime-ui.js"></script>  
-
 <link rel="stylesheet" href="../styles/layout.css" type="text/css" />
 <script type="text/javascript" src="../scripts/jquery-1.4.1.min.js"></script>
 <script type="text/javascript" src="../scripts/jquery-slidedeck.pack.lite.js"></script>
@@ -37,52 +30,54 @@
     
     <input type="image" style="margin: 0px 0px 5px 10px;float:right;" src="../images/Home.png" value="" onClick=" window.location.href='menuprincipal.xhtml' "/>
     
-	<h:form id="form01" style="text-align:center" enctype="multipart/form-data">    
+    <pr:growl id="mensajes" showDetail="true" life="4000" />
+    
+	<h:form id="form" style="text-align:center" enctype="multipart/form-data">    
 	<pr:panel id="panelUno" header="Filtros" style="position:absolute; left:0px; width:800px; background-color:#6FA8DC">
-      <h:panelGrid columns="6" cellpadding="9" styleClass="panelGridCenter" style="position:relative; top:5px">
-        <pr:outputLabel for="selectEdad" value="Filtro Edad"></pr:outputLabel>
-        <h:selectBooleanCheckbox id="selectEdad" immediate="true" onclick="manejarEdad()">
-        	<f:ajax event="click" render="@form"></f:ajax>
-        </h:selectBooleanCheckbox>
-        <pr:outputLabel value="Entre"></pr:outputLabel>
-        <pr:inputText id="edadmax"/>
-        <pr:outputLabel value="y"></pr:outputLabel>
-        <pr:inputText id="edadmax"/>
+      <h:panelGrid id="grilla01" columns="6" cellpadding="9" styleClass="panelGridCenter" style="position:relative; top:5px">
+       <pr:outputLabel id="lblFE" for="selectEdad" value="Filtro Edad"></pr:outputLabel>
+        <pr:commandButton id="selectEdad" value="Activar/Desactivar" onclick="manejarEdad()"></pr:commandButton>
+        <pr:outputLabel id="lblEntre" value="Entre"></pr:outputLabel>
+        <pr:inputText id="edadmin" disabled="true" style="width:50px" maxlength="2" value="#{manejoSeleccion.edadInit}"/> 
+        <pr:outputLabel id="lblY" value="y"></pr:outputLabel>
+        <pr:inputText id="edadmax" disabled="true" style="width:50px" maxlength="2" value="#{manejoSeleccion.edadEnd}"/>
         
         <pr:outputLabel for="selectPreg" value="Filtro Pregrado"></pr:outputLabel>
-        <h:selectBooleanCheckbox id="selectPreg" immediate="true">
-        	<f:ajax event="click" render="@form"></f:ajax>
-        </h:selectBooleanCheckbox>
-        <pr:inputText disabled="true"></pr:inputText>
- 		
- 		<pr:outputLabel></pr:outputLabel>
- 		<pr:outputLabel></pr:outputLabel>
- 		<pr:outputLabel></pr:outputLabel>
+        <pr:commandButton id="selectPreg" value="Activar/Desactivar" onclick="manejarPreg()"></pr:commandButton>
+        <pr:inputText id="txtPreg" placeholder="PREGRADO" style="width:100px" disabled="true" value="#{manejoSeleccion.pregrado}"></pr:inputText>
+        <pr:outputLabel></pr:outputLabel>
+        <pr:outputLabel></pr:outputLabel>
+        <pr:outputLabel></pr:outputLabel>
+        
+        <pr:outputLabel for="selectPost" value="Filtro Postgrado"></pr:outputLabel>
+        <pr:commandButton id="selectPost" value="Activar/Desactivar" onclick="manejarPost()"></pr:commandButton>
+        <pr:inputText id="txtPost" placeholder="POSTGRADO" style="width:100px" disabled="true" value="#{manejoSeleccion.postgrado}"></pr:inputText>
+        <pr:outputLabel></pr:outputLabel>
+        <pr:outputLabel></pr:outputLabel>
+        <pr:outputLabel></pr:outputLabel>
  		
  		<pr:outputLabel for="selectSex" value="Filtro Sexo"></pr:outputLabel>
- 		<h:selectBooleanCheckbox id="selectSex" immediate="true">
-        	<f:ajax event="click" render="@form"></f:ajax>
-        </h:selectBooleanCheckbox>
- 		<h:selectOneMenu id="listSex" label="Seleccion por Sexo">
+ 		<pr:commandButton id="selectSex" value="Activar/Desactivar" onclick="manejarSexo()"></pr:commandButton>
+ 		<h:selectOneMenu id="listSex" label="Seleccion por Sexo" disabled="true" value="#{manejoSeleccion.sexo}">
  			<f:selectItem itemLabel="Masculino" itemValue="M"></f:selectItem>
  			<f:selectItem itemLabel="Femenino" itemValue="F"></f:selectItem>
  		</h:selectOneMenu>
  		<pr:outputLabel></pr:outputLabel>
- 		<pr:outputLabel></pr:outputLabel>
- 		<pr:outputLabel></pr:outputLabel>
- 		
+        <pr:outputLabel></pr:outputLabel>
+        <pr:outputLabel></pr:outputLabel>
+ 		 		
  		<pr:outputLabel for="selectExp" value="Filtro Experiencia"></pr:outputLabel>
- 		<h:selectBooleanCheckbox id="selectExp" immediate="true">
-        	<f:ajax event="click" render="@form"></f:ajax>
-        </h:selectBooleanCheckbox>
-        <pr:inputText id="txtExp" disabled="true" placeholder="Meses Exp"></pr:inputText>
- 		        
+ 		<pr:commandButton id="selectExp" value="Activar/Desactivar" onclick="manejarExp()"></pr:commandButton>
+ 		<pr:outputLabel value="Entre"></pr:outputLabel>
+        <pr:inputText id="txtExpMin" disabled="true" style="width:50px" placeholder="mm" value="#{manejoSeleccion.expMin}" maxlength="2"></pr:inputText>        
+ 		<pr:outputLabel value="y"></pr:outputLabel>  
+ 		<pr:inputText id="txtExpMax" disabled="true" style="width:50px" placeholder="mm" value="#{manejoSeleccion.expMax}" maxlength="2"></pr:inputText>        
+ 		      
         <f:facet name="footer">
-          <button id="default" type="button">Default</button> 
+          <pr:commandButton id="btnFiltro" value="Generar Filtro" actionListener="#{manejoSeleccion.generaFiltros}" update=":mensajes" oncomplete="manejarLogin(xhr, status, args)"/>
         </f:facet>
         <br></br>
       </h:panelGrid>
-      <pr:messages showDetail="true" />
     </pr:panel>
     
   </h:form>
@@ -107,6 +102,107 @@
   </div>
 </div>
 <script type="text/javascript">$('.slidedeck').slidedeck();</script>
-
+<script type="text/javascript">
+	function manejarEdad(){
+		var txtStart=document.getElementById("form:edadmin");
+		var txtEnd=document.getElementById("form:edadmax");
+		if(txtStart.disabled){
+			alert("Filtro de Edad Activado");
+			txtStart.disabled=false;
+			txtEnd.disabled=false;
+			txtStart.required=true;
+			txtEnd.required=true;
+			txtStart.value="#{manejoSeleccion.edadInit}";
+			txtEnd.value="#{manejoSeleccion.edadEnd}";
+		}
+		else{
+			alert("Filtro de Edad Desactivado");
+			txtStart.disabled=true;
+			txtEnd.disabled=true;
+			txtStart.required=false;
+			txtEnd.required=false;
+			txtStart.value="";
+			txtStart.value="";
+		}
+	}
+	function manejarPreg(){
+		var txtStart=document.getElementById("form:txtPreg");
+		if(txtStart.disabled){
+			alert("Filtro de Pregrado Activado");
+			txtStart.disabled=false;
+			txtStart.required=true;
+			txtStart.value="#{manejoSeleccion.pregrado}";
+		}
+		else{
+			alert("Filtro de Pregrado Desactivado");
+			txtStart.disabled=true;
+			txtStart.required=false;
+			txtStart.value="";
+		}
+	}
+	function manejarPost(){
+		var txtStart=document.getElementById("form:txtPost");
+		if(txtStart.disabled){
+			alert("Filtro de Postgrado Activado");
+			txtStart.disabled=false;
+			txtStart.required=true;
+			txtStart.value="#{manejoSeleccion.postgrado}";
+		}
+		else{
+			alert("Filtro de Pregrado Desactivado");
+			txtStart.disabled=true;
+			txtStart.required=false;
+			txtStart.value="";
+		}
+	}
+	function manejarSexo(){
+		var txtStart=document.getElementById("form:listSex");
+		if(txtStart.disabled){
+			alert("Filtro de Sexo Activado");
+			txtStart.disabled=false;
+			txtStart.required=true;
+			txtStart.value="#{manejoSeleccion.sexo}";
+		}
+		else{
+			alert("Filtro de Sexo Desactivado");
+			txtStart.disabled=true;
+			txtStart.required=false;
+			txtStart.value="";
+		}
+	}
+	function manejarExp(){
+		var txtStart=document.getElementById("form:txtExpMin");
+		var txtEnd=document.getElementById("form:txtExpMax");
+		if(txtStart.disabled){
+			alert("Filtro de Experiencia Activado");
+			txtStart.disabled=false;
+			txtEnd.disabled=false;
+			txtStart.required=true;
+			txtEnd.required=true;
+			txtStart.value="#{manejoSeleccion.expMin}";
+			txtEnd.value="#{manejoSeleccion.expMax}";
+		}
+		else{
+			alert("Filtro de Experiencia Desactivado");
+			txtStart.disabled=true;
+			txtEnd.disabled=true;
+			txtStart.required=false;
+			txtEnd.required=false;
+			txtStart.value="";
+			txtEnd.value="";
+		}
+	}
+</script>
+<script type="text/javascript">
+		//<![CDATA[
+		function manejarFiltro(xhr, status, args) {
+			if (!args.validationFailed && args.esRedirigido) {
+				setTimeout(function() {
+					window.location = args.view;
+				}, 500);
+			}
+		}
+		//]]>
+	</script>
 </body>
 </html>

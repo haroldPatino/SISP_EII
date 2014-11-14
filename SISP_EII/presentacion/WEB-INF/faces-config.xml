@@ -14,8 +14,13 @@
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 	<managed-bean>
-		<managed-bean-name>seleccionFiltro</managed-bean-name>
-		<managed-bean-class>logica.SeleccionFiltro</managed-bean-class>
+		<managed-bean-name>manejoSeleccion</managed-bean-name>
+		<managed-bean-class>logica.ManejoSeleccion</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>seleccion</managed-bean-name>
+		<managed-bean-class>logica.Seleccion</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 </faces-config>

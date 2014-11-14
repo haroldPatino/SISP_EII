@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:pr="http://primefaces.org/ui">
+<h:head>
+<title>FILTRO DE PERSONAL</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta http-equiv="imagetoolbar" content="no" />
+<link rel="stylesheet" href="../styles/layout.css" type="text/css" />
+
+<script type="text/javascript" src="../scripts/jquery-1.4.1.min.js"></script>
+<script type="text/javascript"
+	src="../scripts/jquery-slidedeck.pack.lite.js"></script>
+</h:head>
+<h:body>
+	<div class="wrapper row4">
+		<div id="header" class="clear">
+			<img class="imgr" src="../images/LOGO_SISP.png" alt="" width="250"
+				height="110" /> <img class="imgl" src="../images/LOGO_SEE.png" alt=""
+				width="190" height="110" />
+			<h1 align="center" style="margin: 40px 0px 0px 65px;">
+				<a>SISTEMA DE INFORMACI&Oacute;N PARA<br>LA SELECCI&Oacute;N DE PERSONAL</br></a>
+			</h1>
+		</div>
+	</div>
+	<!-- ####################################################################################################### -->
+
+	<div class="wrapper row2">
+			<div id="featured_slide">
+			<!-- ####################################################################################################### -->
+			<h:form>
+    <pr:datatable var="s" value="#{manejoSeleccion.consulta}" rows="10"
+                         paginator="true"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+        <pr:column headerText="ID_PERSONA">
+        	<pr:outputLabel value="#{s.id}"></pr:outputLabel>
+        </pr:column>
+        <pr:column headerText="NOMBRES">
+        	<pr:outputLabel value="#{s.nombres}"></pr:outputLabel>
+        </pr:column>
+        <pr:column headerText="APELLIDOS">
+        	<pr:outputLabel value="#{s.apellidos}"></pr:outputLabel>
+        </pr:column>
+        <pr:column headerText="FECHA_NACIMIENTO">
+        	<pr:outputLabel value="#{s.fecha_nacimiento}"></pr:outputLabel>
+        </pr:column>
+        <pr:column headerText="TELEFONO">
+        	<pr:outputLabel value="#{s.telefono}"></pr:outputLabel>
+        </pr:column>
+        <pr:column headerText="DIRECCION">
+        	<pr:outputLabel value="#{s.direccion}"></pr:outputLabel>
+        </pr:column>
+        <pr:column headerText="EMAIL">
+        	<pr:outputLabel value="#{s.email}"></pr:outputLabel>
+        </pr:column>
+        <pr:column headerText="DOCUMENTO">
+        	<pr:outputLabel value="#{s.documento}"></pr:outputLabel>
+        </pr:column>
+        <pr:column headerText="TIPO_DOCUMENTO">
+        	<pr:outputLabel value="#{s.tipoDoc}"></pr:outputLabel>
+        </pr:column>
+        <pr:column headerText="SEXO">
+        	<pr:outputLabel value="#{s.sexo}"></pr:outputLabel>
+        </pr:column>
+        <pr:column headerText="PREGRADO">
+        	<pr:outputLabel value="#{s.pregrado}"></pr:outputLabel>
+        </pr:column>
+        <pr:column headerText="POSTGRADO">
+        	<pr:outputLabel value="#{s.postgrado}"></pr:outputLabel>
+        </pr:column>
+        <pr:column headerText="EDAD">
+        	<pr:outputLabel value="#{s.edad}"></pr:outputLabel>
+        </pr:column>
+        <pr:column headerText="MESES_EXPERIENCIA"></pr:outputLabel>
+        	<pr:outputLabel value="#{s.exp}"></pr:outputLabel>
+        </pr:column>
+    </pr:datatable>
+</h:form>
+		</div>
+		<!-- ####################################################################################################### -->
+	</div>
+
+	<!-- ####################################################################################################### -->
+	<div class="wrapper row2">
+		<!-- lineas azul de separación -->
+	</div>
+	<!-- ####################################################################################################### -->
+
+
+	<div class="wrapper row4">
+		<div id="header" class="clear">
+			<strong><p align="center">SOFTWARE EMPRESARIAL EFICIENTE</p>
+				<p align="center">see.softw@gmail.com</p>
+				<p align="center">Sogamoso-Boyac&aacute;-Colombia</p>
+				<p align="center">Calle: 4 Sur No. 15-134 | Ed Administrativo
+					Cub&iacute;culo de Invetigaci&oacute;n No. 8</p>
+				<p align="center">Copyright &copy; 2014 - All Rights Reserved -
+					SEE</p></strong>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$('.slidedeck').slidedeck();
+	</script>
+	<script type="text/javascript">
+		//<![CDATA[
+		function manejarLogin(xhr, status, args) {
+			if (!args.validationFailed && args.estaLogeado) {
+				setTimeout(function() {
+					window.location = args.view;
+				}, 500);
+			}
+		}
+		//]]>
+	</script>
+</h:body>
+</html>
