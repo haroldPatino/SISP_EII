@@ -4,12 +4,14 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:pr="http://primefaces.org/ui">
 <h:head>
-<title>LOGIN</title>
+<title>RESULTADOS FILTRO</title>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta http-equiv="imagetoolbar" content="no" />
 <link rel="stylesheet" href="../styles/layout.css" type="text/css" />
+
 <script type="text/javascript" src="../scripts/jquery-1.4.1.min.js"></script>
-<script type="text/javascript" src="../scripts/jquery-slidedeck.pack.lite.js"></script>
+<script type="text/javascript"
+	src="../scripts/jquery-slidedeck.pack.lite.js"></script>
 </h:head>
 <h:body>
 	<div class="wrapper row4">
@@ -20,28 +22,49 @@
 			<h1 align="center" style="margin: 40px 0px 0px 65px;">
 				<a>SISTEMA DE INFORMACI&Oacute;N PARA<br>LA SELECCI&Oacute;N DE PERSONAL</br></a>
 			</h1>
+			<input type="image" style="margin: 0px 0px 5px 10px;float:right; animation:alternate" src="../images/exit.png" 
+    value="" onClick=" window.location.href='login.xhtml' "/>
+    
+    <input type="image" style="margin: 0px 0px 5px 10px;float:right;" src="../images/Home.png" value="" onClick=" window.location.href='menuprincipal.xhtml' "/>
+			
 		</div>
 	</div>
 	<!-- ####################################################################################################### -->
 
 	<div class="wrapper row2">
-			<div id="featured_slide">
-			<!-- ####################################################################################################### -->
-			 <pr:growl id="mensajes" showDetail="true" life="2000" />
-		<h:form style="text-align:center">
-    <pr:panel header="Login" style="position:relative; left:300px; width:350px; background-color:#6FA8DC">
-      <h:panelGrid columns="2" cellpadding="9" styleClass="panelGridCenter" style="position:relative; top:5px">
-        <h:outputLabel for="username" value="Usuario:" />
-        <pr:inputText value="#{loginBean.nombre}" id="username" required="true" label="username" placeholder="nickname" />
-        <h:outputLabel for="password" value="Clave:" />
-        <pr:password value="#{loginBean.clave}" id="password" required="true" label="password" />
-        <f:facet name="footer">
-          <pr:commandButton id="loginButton" value="Login" actionListener="#{loginBean.login}" update=":mensajes" oncomplete="manejarLogin(xhr, status, args)" />
-        </f:facet>
-      </h:panelGrid>
-    </pr:panel>
-  </h:form>  
-		</div>
+	  <div>
+  <h:form id="formdata">
+ <pr:dataTable id="result" var="s" value="#{manejoSeleccion.consulta}" scrollable="true" scrollHeight="300">
+        <pr:column headerText="Id" footerText="Id">
+            <h:outputText value="#{s.id}"/>
+        </pr:column>
+        <pr:column headerText="Nombres" footerText="Nombres">
+            <h:outputText value="#{s.nombres}" />
+        </pr:column>
+        <pr:column headerText="Apellidos" footerText="Apellidos">
+            <h:outputText value="#{s.apellidos}" />
+        </pr:column>
+        <pr:column headerText="Telefono" footerText="Telefono">
+            <h:outputText value="#{s.telefono}" />
+        </pr:column>
+        <pr:column headerText="Documento" footerText="Documento">
+            <h:outputText value="#{s.documento}" />
+        </pr:column>
+        <pr:column headerText="Pregrado" footerText="Pregrado">
+            <h:outputText value="#{s.pregrado}" />
+        </pr:column>
+        <pr:column headerText="Postgrado" footerText="Postgrado">
+            <h:outputText value="#{s.postgrado}" />
+        </pr:column>
+        <pr:column headerText="Edad" footerText="Edad">
+            <h:outputText value="#{s.edad}" />
+        </pr:column>
+        <pr:column headerText="Meses Exp" footerText="Exp_Total">
+            <h:outputText value="#{s.exp}" />
+        </pr:column>
+    </pr:dataTable>
+</h:form>
+  </div>
 		<!-- ####################################################################################################### -->
 	</div>
 
@@ -65,17 +88,6 @@
 	</div>
 	<script type="text/javascript">
 		$('.slidedeck').slidedeck();
-	</script>
-	<script type="text/javascript">
-		//<![CDATA[
-		function manejarLogin(xhr, status, args) {
-			if (!args.validationFailed && args.estaLogeado) {
-				setTimeout(function() {
-					window.location = args.view;
-				}, 500);
-			}
-		}
-		//]]>
 	</script>
 </h:body>
 </html>

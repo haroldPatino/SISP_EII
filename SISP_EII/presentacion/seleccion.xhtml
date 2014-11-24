@@ -30,7 +30,7 @@
     
     <input type="image" style="margin: 0px 0px 5px 10px;float:right;" src="../images/Home.png" value="" onClick=" window.location.href='menuprincipal.xhtml' "/>
     
-    <pr:growl id="mensajes" showDetail="true" life="4000" />
+    <pr:growl id="info" showDetail="true" life="4000" />
     
 	<h:form id="form" style="text-align:center" enctype="multipart/form-data">    
 	<pr:panel id="panelUno" header="Filtros" style="position:absolute; left:0px; width:800px; background-color:#6FA8DC">
@@ -38,27 +38,28 @@
        <pr:outputLabel id="lblFE" for="selectEdad" value="Filtro Edad"></pr:outputLabel>
         <pr:commandButton id="selectEdad" value="Activar/Desactivar" onclick="manejarEdad()"></pr:commandButton>
         <pr:outputLabel id="lblEntre" value="Entre"></pr:outputLabel>
-        <pr:inputText id="edadmin" disabled="true" style="width:50px" maxlength="2" value="#{manejoSeleccion.edadInit}"/> 
+        <pr:inputText id="edadmin" disabled="false" required="true" style="width:50px" maxlength="2" value="#{manejoSeleccion.edadInit}"/> 
         <pr:outputLabel id="lblY" value="y"></pr:outputLabel>
-        <pr:inputText id="edadmax" disabled="true" style="width:50px" maxlength="2" value="#{manejoSeleccion.edadEnd}"/>
+        <pr:inputText id="edadmax" disabled="false" required="true" style="width:50px" maxlength="2" value="#{manejoSeleccion.edadEnd}"/>
         
         <pr:outputLabel for="selectPreg" value="Filtro Pregrado"></pr:outputLabel>
         <pr:commandButton id="selectPreg" value="Activar/Desactivar" onclick="manejarPreg()"></pr:commandButton>
-        <pr:inputText id="txtPreg" placeholder="PREGRADO" style="width:100px" disabled="true" value="#{manejoSeleccion.pregrado}"></pr:inputText>
+        <pr:inputText id="txtPreg" placeholder="PREGRADO" style="width:100px" disabled="false" required="true" value="#{manejoSeleccion.pregrado}"></pr:inputText>
         <pr:outputLabel></pr:outputLabel>
         <pr:outputLabel></pr:outputLabel>
         <pr:outputLabel></pr:outputLabel>
         
         <pr:outputLabel for="selectPost" value="Filtro Postgrado"></pr:outputLabel>
         <pr:commandButton id="selectPost" value="Activar/Desactivar" onclick="manejarPost()"></pr:commandButton>
-        <pr:inputText id="txtPost" placeholder="POSTGRADO" style="width:100px" disabled="true" value="#{manejoSeleccion.postgrado}"></pr:inputText>
+        <pr:inputText id="txtPost" placeholder="POSTGRADO" required="true" style="width:100px" disabled="false" value="#{manejoSeleccion.postgrado}"></pr:inputText>
         <pr:outputLabel></pr:outputLabel>
         <pr:outputLabel></pr:outputLabel>
         <pr:outputLabel></pr:outputLabel>
  		
  		<pr:outputLabel for="selectSex" value="Filtro Sexo"></pr:outputLabel>
  		<pr:commandButton id="selectSex" value="Activar/Desactivar" onclick="manejarSexo()"></pr:commandButton>
- 		<h:selectOneMenu id="listSex" label="Seleccion por Sexo" disabled="true" value="#{manejoSeleccion.sexo}">
+ 		<h:selectOneMenu id="listSex" label="Seleccion por Sexo" disabled="false" value="#{manejoSeleccion.sexo}">
+ 			<f:selectItem itemLabel="" itemValue=""></f:selectItem>
  			<f:selectItem itemLabel="Masculino" itemValue="M"></f:selectItem>
  			<f:selectItem itemLabel="Femenino" itemValue="F"></f:selectItem>
  		</h:selectOneMenu>
@@ -69,19 +70,19 @@
  		<pr:outputLabel for="selectExp" value="Filtro Experiencia"></pr:outputLabel>
  		<pr:commandButton id="selectExp" value="Activar/Desactivar" onclick="manejarExp()"></pr:commandButton>
  		<pr:outputLabel value="Entre"></pr:outputLabel>
-        <pr:inputText id="txtExpMin" disabled="true" style="width:50px" placeholder="mm" value="#{manejoSeleccion.expMin}" maxlength="2"></pr:inputText>        
+        <pr:inputText id="txtExpMin" disabled="false" required="true" style="width:50px" placeholder="mm" value="#{manejoSeleccion.expMin}" maxlength="2"></pr:inputText>        
  		<pr:outputLabel value="y"></pr:outputLabel>  
- 		<pr:inputText id="txtExpMax" disabled="true" style="width:50px" placeholder="mm" value="#{manejoSeleccion.expMax}" maxlength="2"></pr:inputText>        
+ 		<pr:inputText id="txtExpMax" disabled="false" required="true" style="width:50px" placeholder="mm" value="#{manejoSeleccion.expMax}" maxlength="2"></pr:inputText>        
  		      
         <f:facet name="footer">
-          <pr:commandButton id="btnFiltro" value="Generar Filtro" actionListener="#{manejoSeleccion.generaFiltros}" update=":mensajes" oncomplete="manejarLogin(xhr, status, args)"/>
+          <pr:commandButton id="btnFiltro" value="Generar Filtro" actionListener="#{manejoSeleccion.filtros}" update=":info" oncomplete="manejarResult(xhr, status, args)"/>
         </f:facet>
         <br></br>
       </h:panelGrid>
     </pr:panel>
-    
   </h:form>
   </div>
+
 </div>   
     
  
@@ -90,7 +91,6 @@
 <!-- lineas azul de separación -->
 </div>
 <!-- ####################################################################################################### -->
-
 
 <div class="wrapper row4">
   <div id="header" class="clear">
@@ -112,8 +112,6 @@
 			txtEnd.disabled=false;
 			txtStart.required=true;
 			txtEnd.required=true;
-			txtStart.value="#{manejoSeleccion.edadInit}";
-			txtEnd.value="#{manejoSeleccion.edadEnd}";
 		}
 		else{
 			alert("Filtro de Edad Desactivado");
@@ -121,8 +119,6 @@
 			txtEnd.disabled=true;
 			txtStart.required=false;
 			txtEnd.required=false;
-			txtStart.value="";
-			txtStart.value="";
 		}
 	}
 	function manejarPreg(){
@@ -131,28 +127,23 @@
 			alert("Filtro de Pregrado Activado");
 			txtStart.disabled=false;
 			txtStart.required=true;
-			txtStart.value="#{manejoSeleccion.pregrado}";
 		}
 		else{
 			alert("Filtro de Pregrado Desactivado");
 			txtStart.disabled=true;
 			txtStart.required=false;
-			txtStart.value="";
 		}
 	}
 	function manejarPost(){
 		var txtStart=document.getElementById("form:txtPost");
 		if(txtStart.disabled){
-			alert("Filtro de Postgrado Activado");
 			txtStart.disabled=false;
 			txtStart.required=true;
-			txtStart.value="#{manejoSeleccion.postgrado}";
 		}
 		else{
 			alert("Filtro de Pregrado Desactivado");
 			txtStart.disabled=true;
 			txtStart.required=false;
-			txtStart.value="";
 		}
 	}
 	function manejarSexo(){
@@ -161,13 +152,11 @@
 			alert("Filtro de Sexo Activado");
 			txtStart.disabled=false;
 			txtStart.required=true;
-			txtStart.value="#{manejoSeleccion.sexo}";
 		}
 		else{
 			alert("Filtro de Sexo Desactivado");
 			txtStart.disabled=true;
 			txtStart.required=false;
-			txtStart.value="";
 		}
 	}
 	function manejarExp(){
@@ -179,8 +168,6 @@
 			txtEnd.disabled=false;
 			txtStart.required=true;
 			txtEnd.required=true;
-			txtStart.value="#{manejoSeleccion.expMin}";
-			txtEnd.value="#{manejoSeleccion.expMax}";
 		}
 		else{
 			alert("Filtro de Experiencia Desactivado");
@@ -188,17 +175,15 @@
 			txtEnd.disabled=true;
 			txtStart.required=false;
 			txtEnd.required=false;
-			txtStart.value="";
-			txtEnd.value="";
 		}
 	}
 </script>
 <script type="text/javascript">
 		//<![CDATA[
-		function manejarFiltro(xhr, status, args) {
-			if (!args.validationFailed && args.esRedirigido) {
+		function manejarResult(xhr, status, args) {
+			if (args.esRedirigido) {
 				setTimeout(function() {
-					window.location = args.view;
+					window.location = args.view2;
 				}, 500);
 			}
 		}

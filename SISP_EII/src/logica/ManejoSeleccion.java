@@ -23,7 +23,7 @@ import persitencia.ConexionBD;
  */
 public class ManejoSeleccion implements Serializable{
 //Attributes-------------------------------------------------
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = -1213456789L;
 	private String edadInit;
 	private String edadEnd;
 	private String pregrado;
@@ -36,9 +36,20 @@ public class ManejoSeleccion implements Serializable{
 	private static List<Seleccion> consulta;
 //Methods----------------------------------------------------
 	
+	/**
+	 * @param redirigir redirigir a colocar
+	 */
+	public void setRedirigir(boolean redirigir) {
+		this.redirigir = redirigir;
+	}
+
+	/**
+	 * @return the redirigir
+	 */
 	public boolean esRedirigido() {
-	    return redirigir;
-	  }
+		return redirigir;
+	}
+
 	/**
 	 * @return the edadInit
 	 */
@@ -141,30 +152,31 @@ public class ManejoSeleccion implements Serializable{
 	public void setPostgrado(String postgrado) {
 		this.postgrado = postgrado.toUpperCase();
 	}
-	public void generaFiltros(ActionEvent actionEvent){
-		RequestContext context = RequestContext.getCurrentInstance();
+	public void filtros(ActionEvent actionEvent){
 	    FacesMessage msg = null;
+	    RequestContext context = RequestContext.getCurrentInstance();
+	    conexion=new ConexionBD();
 	    consulta=new ArrayList<Seleccion>();
 		String select="SELECT P.*,round((DATEDIFF(NOW(),P.FECHA_NACIMIENTO)/30)/12) as EDAD,SUM(round((DATEDIFF(E.FECHA_FIN,E.FECHA_INICIO)/30))) as EXP_TOTAL FROM PERSONA AS P, EXP_LAB AS E WHERE P.ID_PERSONA=E.ID_PERSONA";
-		
-		if(!edadInit.isEmpty() || !edadEnd.isEmpty()){
+		if(edadInit!="" && edadEnd!="" && edadInit!=null && edadEnd!=null){
 			select=select+sqlEdad(getEdadInit(), getEdadEnd());
 		}
-		if(!pregrado.isEmpty()){
+		if(pregrado!="" && pregrado!=null){
 			select=select+sqlPregrado(getPregrado());
 		}
-		if(!postgrado.isEmpty()){
+		if(postgrado!="" && postgrado!=null){
 			select=select+sqlPostgrado(getPostgrado());
 		}
-		if(!sexo.isEmpty()){
+		if(sexo!="" && sexo!=null){
 			select=select+sqlSexo(getSexo());
 		}
 		
 		select=select+" group by P.ID_PERSONA";
 		
-		if(!expMin.isEmpty() || !expMax.isEmpty()) {
+		if(expMin!="" && expMax!="" && expMin!=null && expMax!=null) {
 			select=select+sqlExperiencia(expMin,expMax);
 		}
+		System.out.println(select);
 		if(getConexion().conectar()){
 			ResultSet result;
 			try{
@@ -192,19 +204,28 @@ public class ManejoSeleccion implements Serializable{
 				System.out.println(e.getMessage());
 			}
 		}
-		if (consulta.size()>0) {
-			redirigir=true;
-			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "CONSULTA DE DATOS", "En breve sera redirigido a los resultados");
+		if(((edadInit=="" && edadEnd=="") || (edadInit==null && edadEnd==null)) && (pregrado=="" || pregrado==null) && (postgrado=="" || postgrado==null) && (sexo=="" || sexo==null) && ((expMin=="" && expMax=="") || (expMin==null && expMax==null))){
+			redirigir=false;
+			context.addCallbackParam("esRedirigido", redirigir);
+			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "CONSULTA DE DATOS", "No se puede generar el filtro, porque no se han añadido criterios");
+			consulta=new ArrayList<Seleccion>();
 		}
 		else{
-			redirigir=false;
-			msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "CONSULTA DE DATOS", "No existen resultados con los filtros seleccionados");
+			if (consulta.size()>0) {
+				redirigir=true;
+			    context.addCallbackParam("esRedirigido", redirigir);
+			    context.addCallbackParam("view2", "resultadofiltro.xhtml");
+				msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "CONSULTA DE DATOS", "En breve se mostraran los resultados");
+			}
+			else{
+				redirigir=false;
+				context.addCallbackParam("esRedirigido", redirigir);
+				msg = new FacesMessage(FacesMessage.SEVERITY_INFO, "CONSULTA DE DATOS", "No existen resultados con los filtros seleccionados");
+			}
 		}
 		
+		
 		 FacesContext.getCurrentInstance().addMessage(null, msg);
-		    context.addCallbackParam("esRedirigido", redirigir);
-		    if (redirigir)
-		      context.addCallbackParam("view", "menuprincipal.xhtml");
 	}
 	private String sqlPregrado(String pregrado){
 		return " AND `PREGRADO` LIKE '%"+pregrado+"%'";
@@ -219,6 +240,6 @@ public class ManejoSeleccion implements Serializable{
 		return " AND `SEXO` LIKE '"+sexo+"'";
 	}
 	private String sqlExperiencia(String mesesMin,String mesesMax){
-		return " having SUM(round((DATEDIFF(E.FECHA_FIN,E.FECHA_INICIO)/30))) BETWEEN"+mesesMin+" AND "+mesesMax;
+		return " having SUM(round((DATEDIFF(E.FECHA_FIN,E.FECHA_INICIO)/30))) BETWEEN "+mesesMin+" AND "+mesesMax;
 	}
 }
